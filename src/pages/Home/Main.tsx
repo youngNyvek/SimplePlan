@@ -14,7 +14,7 @@ import Animated, {
 
 import Card from './Card'
 const Home: React.FC = () => {
-  const data = [1,2,3,4,5,6,7];
+  const data = [1,2,3,4,5,6,7,1,2,3,4,5,6,71,2,3,4,5,6,71,2,3,4,5,6,7];
   const translationY = useSharedValue(0);
   const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
   const scrollhandle = useAnimatedScrollHandler({
@@ -23,13 +23,13 @@ const Home: React.FC = () => {
     },
 
   })
-  const headerStyle= useAnimatedStyle(() => {
+  const headerAnimatedStyle= useAnimatedStyle(() => {
     return {
       height: interpolate(translationY.value,[50, 150],[80,30], Extrapolate.CLAMP)
     }
   });
 
-  const gestFinStyles= useAnimatedStyle(() => {
+  const simplePlanAnimatedStyle= useAnimatedStyle(() => {
     return {
       opacity: interpolate(translationY.value,[100, 150],[1,0], Extrapolate.CLAMP)
     }
@@ -37,10 +37,10 @@ const Home: React.FC = () => {
 
   return (
     <View style={{flex: 1}}>
-          <Animated.View style={[Header.View, headerStyle ]}>
+          <Animated.View style={[Header.View, headerAnimatedStyle ]}>
 
             <Animated.View
-              style={[Header.TextView, gestFinStyles]}>
+              style={[Header.TextView, simplePlanAnimatedStyle]}>
               <Text
                 style={Header.TextStyle1}
               >$imple</Text>
