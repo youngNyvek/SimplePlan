@@ -53,18 +53,18 @@ const Home: React.FC = () => {
           </Animated.View>
   
               
-             <AnimatedFlatList
-             style={[{padding: 20, zIndex: -1}]}
-              data={data}
-              renderItem={ () => {
-                return(
-                  <Card/>
+          <AnimatedFlatList
+          style={[{padding: 20, zIndex: -1}]}
+          data={data}
+          renderItem={ () => {
+            return(
+              <Card/>
 
-                )
-              }}
-              keyExtractor={(item, index) => `item${index}`}
-              onScroll={scrollhandle}
-             />
+            )
+          }}
+          keyExtractor={(item, index) => `item${index}`}
+          onScroll={scrollhandle}
+          />
  
     </View>
 
