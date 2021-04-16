@@ -6,8 +6,7 @@ import { View, Text } from 'react-native';
 const Card: React.FC = () => {
     return (
         <View 
-            style={
-                { 
+            style={{ 
                     backgroundColor: '#4d4d4d' , 
                     flexDirection: 'row', 
                     padding:20,
@@ -15,10 +14,12 @@ const Card: React.FC = () => {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     marginBottom: 10
-                }
-            }
-            
+                }}
         >
+
+            <View style={{backgroundColor: '#72bf49', width: 2, height: 50, marginRight: 5}}/>
+
+           
             <View style={{ flex: 1}}>
                 <Text style={{fontSize: 20, color:'#fff'}}>
                     MAR
@@ -28,30 +29,30 @@ const Card: React.FC = () => {
                 </Text>
             </View>
 
-            <View style={{flexDirection: 'row', flex: 2}}>
+            <View style={{flexDirection: 'row', flex: 3}}>
                 <View style={{flex: 1, justifyContent: 'flex-end'}}> 
-                    <Text style={{fontSize: 12, color:'#fff'}}>
+                    <Text style={{fontSize: 14, color:'#fff'}}>
                         Renda
                     </Text>
-                    <Text style={{fontSize: 12, color:'#72bf49'}}>
+                    <Text style={{fontSize: 14, color:'#72bf49'}}>
                         R$ 1250
                     </Text>
                 </View>
 
                 <View style={{flex: 1}}>
-                    <Text style={{fontSize: 12, color:'#fff'}}>
+                    <Text style={{fontSize: 14, color:'#fff'}}>
                         Despesa
                     </Text>
-                    <Text style={{fontSize: 12, color:'#72bf49'}}>
-                        R$ 500
+                    <Text style={{fontSize: 14, color:'#72bf49'}}>
+                        R$ 700
                     </Text>
                 </View>
                 <View style={{flex: 1}}>
-                    <Text style={{fontSize: 12, color:'#fff'}}>
+                    <Text style={{fontSize: 14, color:'#fff'}}>
                         Saldo
                     </Text>
-                    <Text style={{fontSize: 12, color:'#72bf49'}}>
-                        R$ 700
+                    <Text style={{fontSize: 14, color:'#72bf49'}}>
+                        R$ 300
                     </Text>
                 </View>
 
