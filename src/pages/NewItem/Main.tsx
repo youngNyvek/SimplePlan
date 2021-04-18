@@ -1,41 +1,106 @@
-import React, { useState } from 'react';
-import { Text, View, FlatList, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native';
-import TouchableScale from 'react-native-touchable-scale';
-import Card from './Card';
-import MonthCards from './MonthCards';
-import YearCards from './YearCards';
+import React, { useState, useContext, useEffect } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 
+import Cards from './Cards';
+import AppButton from '../../components/Button';
 // import { Container } from './styles';
 
 const NewItem: React.FC = () => {
+  const [monthIdSelected, setMonthIdSelected] = useState(0);
+  const [yearIdSelected, setYearIdSelected] = useState(0);
   
-  
+  const months = [
+    {
+      text: 'Jan',
+      id: 1
+    },
+    {
+      text: 'Fev',
+      id: 2
+    },
+    {
+      text: 'Mar',
+      id: 3
+    },
+    {
+      text: 'Abr',
+      id: 4
+    },
+    {
+      text: 'Mai',
+      id: 5
+    },
+    {
+      text: 'Jun',
+      id: 6
+    },
+    {
+      text: 'Jul',
+      id: 7
+    },
+    {
+      text: 'Ago',
+      id: 8
+    },
+    {
+      text: 'Set',
+      id: 9
+    },
+    {
+      text: 'Out',
+      id: 10
+    },
+    {
+      text: 'Nov',
+      id: 11
+    },
+    {
+      text: 'Dez',
+      id: 12
+    },
+  ]
+
+  const years = [];
+  const currentYear = new Date().getFullYear();
+  for ( let y = currentYear; y <= currentYear+10; y++ ){
+    years.push({text: `${y}`, id: y});
+  }
+
 
   return (
+      <View style={{ flex: 1 }}>
 
-    <View style={{ flex: 1 }}>
+        <Text style={NewItemStyles.HeaderText}>NOVO PLANEJAMENTO</Text>
+        <View style={NewItemStyles.CardView}>
 
-      <Text style={NewItemStyles.HeaderText}>NOVO PLANEJAMENTO</Text>
-      <View style={NewItemStyles.CardView}>
-
-        <View>
-          <Text style={NewItemStyles.TextLabel}>
-            Mês
+          <View>
+            <Text style={NewItemStyles.TextLabel}>
+              Mês
           </Text>
-          <MonthCards/>
+            <Cards setSelectedID={setMonthIdSelected} cardData={months}/>
+          </View>
+
+          <View>
+            <Text style={NewItemStyles.TextLabel}>
+              Ano
+          </Text>
+            <Cards setSelectedID={setYearIdSelected} cardData={years}/>
+          </View>
+
         </View>
 
-        <View>
-          <Text style={NewItemStyles.TextLabel}>
-            Ano
-          </Text>
-          <YearCards/>
+        <View style={{
+          backgroundColor: '#4d4d4d',
+          flex: 1
+        }}>
+        <AppButton onPress={() => console.log('oi')}>
+            Iniciar novo planejamento
+        </AppButton>
 
         </View>
 
       </View>
 
-    </View>
   );
 }
 
@@ -49,12 +114,11 @@ const NewItemStyles = StyleSheet.create({
     flex: 1,
   },
   CardView: {
-    flex: 5,
+    flex: 4,
     backgroundColor: '#4d4d4d',
     borderTopStartRadius: 100,
-
   },
-  TextLabel: { fontSize: 50, color: '#fff', fontWeight: '700', marginVertical: 30, textAlign: 'right', marginRight: 20 },
+  TextLabel: { fontSize: 35, color: '#fff', fontWeight: '700', marginVertical: 30, textAlign: 'right', marginRight: 20 },
 })
 
 export default NewItem;

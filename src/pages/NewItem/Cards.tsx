@@ -1,19 +1,24 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { View } from 'react-native';
 import Card from './Card';
 
 // import { Container } from './styles';
+interface ICards{
+  cardData: ICardData[];
+  setSelectedID: React.Dispatch<React.SetStateAction<number>>;
+}
 
-const MonthCad: React.FC = () => {
+interface ICardData {
+  text: string,
+  id: number
+}
+const Cards: React.FC<ICards> = ({setSelectedID, cardData}) => {
   const [selectedID, setIsSelectedId] = useState(Number);
-
-  const years = [];
-  const currentYear = new Date().getFullYear();
-  for ( let y = currentYear; y <= currentYear+10; y++ ){
-    years.push({year: `${y}`, id: y});
-  }
+  
+  useEffect(()=>{
+    setSelectedID(selectedID);
+  }, [selectedID]);
 
   return (
     <FlatList
@@ -21,17 +26,17 @@ const MonthCad: React.FC = () => {
             scrollEventThrottle={50}
             style={{ height: 100, flexGrow: 0, paddingHorizontal: 10 }}
             horizontal
-            data={years}
+            data={cardData}
             renderItem={(render) => {
               return (
-                <Card id={render.item.id} text={render.item.year} selectedID={selectedID} setIsSelectedId={setIsSelectedId}/>
+                <Card id={render.item.id} text={render.item.text} selectedID={selectedID} setIsSelectedId={setIsSelectedId}/>
               )
             }}
             keyExtractor={(item, index) => {
-              return `${item.year}${item.id}`
+              return `${item.text}${item.id}`
             }}
           />
   )
 }
 
-export default MonthCad;
+export default Cards;

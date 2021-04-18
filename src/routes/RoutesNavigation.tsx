@@ -15,6 +15,7 @@ export default () => {
     initialRouteName="Home">
         <Route.Screen name="Home" component={Home}/>
         <Route.Screen name="NewItem" component={NewItem}/>
+      
     </Route.Navigator>
     );
 }

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Icons from 'react-native-vector-icons/Feather';
 import TouchableScale from 'react-native-touchable-scale';
+import {  RectButton } from 'react-native-gesture-handler';
 
 import Animated, {
   useSharedValue,
@@ -19,7 +20,7 @@ const Home: React.FC = () => {
   const data = [1,2,3,4,5,6,7,1,2,3,4,5,6,71,2,3,4,5,6,71,2,3,4,5,6,7];
   const translationY = useSharedValue(0);
   const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-  const AnimatedTouchableScale = Animated.createAnimatedComponent(TouchableScale);
+  const AnimatedRectButton = Animated.createAnimatedComponent(RectButton);
   const scrollhandle = useAnimatedScrollHandler({
     onScroll: (e) => {
       translationY.value = e.contentOffset.y;
@@ -34,8 +35,7 @@ const Home: React.FC = () => {
   
   return (
     <View style={{flex: 1}}>
-          <AnimatedTouchableScale
-          activeScale={0.9}
+          <AnimatedRectButton
           onPress={() => navigation.navigate('NewItem')} 
           style={[Main.Icon, plusButtonAnimatedStyles]}
           >
@@ -45,7 +45,7 @@ const Home: React.FC = () => {
             name="plus"
             size={30}
             />
-        </AnimatedTouchableScale>
+        </AnimatedRectButton>
 
           <Header translationY={translationY}/>
               
