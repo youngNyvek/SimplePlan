@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Icons from 'react-native-vector-icons/Feather';
 import TouchableScale from 'react-native-touchable-scale';
@@ -15,9 +15,12 @@ import { useNavigation } from '@react-navigation/native';
 
 import Card from './Card'
 import Header  from './Header';
+
+import ICard from './ICard'
 const Home: React.FC = () => {
   const navigation = useNavigation();
-  const data = [1,2,3,4,5,6,7,1,2,3,4,5,6,71,2,3,4,5,6,71,2,3,4,5,6,7];
+  const [dataState, setDataState] = useState<ICard[]>([]);
+
   const translationY = useSharedValue(0);
   const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
   const AnimatedRectButton = Animated.createAnimatedComponent(RectButton);
@@ -33,6 +36,16 @@ const Home: React.FC = () => {
     }
   })
   
+  const renderedItem = useCallback(({ item, index}) => {
+    return(
+      <Card
+        month={item.month}
+        year={item.year}
+        id={item.id}
+      />
+    )
+  }, [])
+
   return (
     <View style={{flex: 1}}>
           <AnimatedRectButton
@@ -51,13 +64,8 @@ const Home: React.FC = () => {
               
           <AnimatedFlatList
           style={[Main.FlatList]}
-          data={data}
-          renderItem={ () => {
-            return(
-              <Card/>
-
-            )
-          }}
+          data={dataState}
+          renderItem={renderedItem}
           keyExtractor={(item, index) => `item${index}`}
           onScroll={scrollhandle}
           />

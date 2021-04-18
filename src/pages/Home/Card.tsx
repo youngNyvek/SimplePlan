@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 // import { Container } from './styles';
-
-const Card: React.FC = () => {
+import ICard from './ICard'
+const Card: React.FC<ICard> = ({ month, year, id }) => {
     return (
         <View 
             style={{ 
@@ -22,10 +22,10 @@ const Card: React.FC = () => {
            
             <View style={{ flex: 1}}>
                 <Text style={{fontSize: 20, color:'#fff'}}>
-                    MAR
+                    {month.toLocaleUpperCase()}
                 </Text>
                 <Text style={{fontSize: 16, color:'#fff', letterSpacing: 2}}>
-                    2021
+                    {year}
                 </Text>
             </View>
 
