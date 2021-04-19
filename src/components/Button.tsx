@@ -7,14 +7,15 @@ import { RectButtonProperties, RectButton } from 'react-native-gesture-handler';
 // import { Container } from './styles';
 interface IAppButton extends RectButtonProperties{
     children: string;
+    backgroundColor?: string;
 }
-const AppButon: React.FC<IAppButton> = ({children, ...rest}) => {
+const AppButon: React.FC<IAppButton> = ({children, backgroundColor, ...rest}) => {
   return (
         <RectButton 
           {...rest}
           style={{
                 width: '80%',
-                backgroundColor: '#72bf49',
+                backgroundColor: backgroundColor ? backgroundColor :'#72bf49',
                 alignSelf: 'center',
                 padding: 20, 
                 borderRadius: 15,

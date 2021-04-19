@@ -25,7 +25,7 @@ const Card: React.FC<ICard> = ({ id, text, setIsSelectedId, selectedID }) => {
 
                     <View style={[CardStyles.Line, selectedID == id ? { backgroundColor: '#72bf49' } : { backgroundColor: '#4d4d4d' }]} />
                     <Text style={CardStyles.ItemText}>
-                        {text}
+                        {text.toLocaleUpperCase()}
                     </Text>
                     <View style={[CardStyles.Line, selectedID == id ? { backgroundColor: '#72bf49' }  : { backgroundColor: '#4d4d4d' }]} />
 

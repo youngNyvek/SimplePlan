@@ -12,6 +12,8 @@ target 'SimplePlan' do
     :hermes_enabled => false
   )
 
+  pod 'vasern', :path => '../node_modules/vasern'
+
   target 'SimplePlanTests' do
     inherit! :complete
     # Pods for testing

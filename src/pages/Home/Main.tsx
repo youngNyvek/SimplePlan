@@ -17,6 +17,8 @@ import Card from './Card'
 import Header  from './Header';
 
 import ICard from './ICard'
+import VasernDB, { Plans } from '../../database/vasernIndex';
+
 const Home: React.FC = () => {
   const navigation = useNavigation();
   const [dataState, setDataState] = useState<ICard[]>([]);
@@ -46,6 +48,45 @@ const Home: React.FC = () => {
     )
   }, [])
 
+  function getItens(){
+    let plans = Plans.data();
+    console.log('getItens plans', plans);
+    let itens:any = [];
+    plans.map((item: any, index) => {
+      itens.push({id: item.id, month: item.month, year: item.year})
+    });
+
+    console.log('getItens itens', itens);
+    setDataState(itens);
+  }
+
+  // function removeItens(){
+  //   let plans = Plans.data();
+  //   console.log('getItens plans', plans);
+  //   let itens:any = [];
+  //   plans.map((item: any, index) => {
+  //     Plans.remove(item.id)
+  //   });
+
+    
+  // }
+  // useEffect(()=>{
+  //   console.log('primeiro effect')
+  //   Plans.onLoaded(() => {console.log('onLoaded'); removeItens()});
+  //   Plans.onChange(() => {console.log('onChange'); removeItens()});
+  // }, []);
+
+  useEffect(()=>{
+    console.log('primeiro effect')
+    Plans.onLoaded(() => {console.log('onLoaded'); getItens()});
+    Plans.onChange(() => {console.log('onChange'); getItens()});
+  }, []);
+
+  useEffect(()=>{
+    console.log('dataState',dataState)
+  }, [dataState]);
+
+  VasernDB.get('Plans').on
   return (
     <View style={{flex: 1}}>
           <AnimatedRectButton
