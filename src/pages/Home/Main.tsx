@@ -150,6 +150,7 @@ const Main = StyleSheet.create({
   CenterText:{
     color: '#4d4d4d',
     fontSize: 20,
+    textAlign: 'center'
   }
 })
 
