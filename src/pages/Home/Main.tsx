@@ -102,7 +102,7 @@ const Home: React.FC = () => {
                   Nenhum plano encontrado
                 </Text>
                 <Text style={Main.CenterText}>
-                  Clique no icone para criar um novo plano
+                  Clique no icone para criar um novo
                 </Text>
                 <RectButton 
                   onPress={() => navigation.navigate('NewItem')} 
