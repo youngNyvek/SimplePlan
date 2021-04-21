@@ -77,6 +77,8 @@ const NewItem: React.FC = () => {
     Plans.insert({
       month: getSelectedMonth[0].text,
       year: getSelectedYear[0].text,
+      revenueValue: '129233',
+      expenseValue: '3300'
     });
     
     navigate.goBack();

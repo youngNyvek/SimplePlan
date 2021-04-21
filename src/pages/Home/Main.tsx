@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native';
 import Icons from 'react-native-vector-icons/Feather';
 import TouchableScale from 'react-native-touchable-scale';
 import {  RectButton } from 'react-native-gesture-handler';
-
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
@@ -12,16 +11,14 @@ import Animated, {
   Extrapolate
 } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
-
 import Card from './Card'
 import Header  from './Header';
 
-import ICard from './ICard'
-import VasernDB, { Plans } from '../../database/vasernIndex';
+import VasernDB, { Plans, Expenses } from '../../database/vasernIndex';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
-  const [dataState, setDataState] = useState<ICard[]>([]);
+  const [dataState, setDataState] = useState<any>([]);
 
   const translationY = useSharedValue(0);
   const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
@@ -44,32 +41,26 @@ const Home: React.FC = () => {
         month={item.month}
         year={item.year}
         id={item.id}
+        expenseTotal={item.expenseValue}
+        revenueTotal={item.revenueValue}
       />
     )
-  }, [])
+  }, []);
+
 
   function getItens(){
     let plans = Plans.data();
     console.log('getItens plans', plans);
     let itens:any = [];
     plans.map((item: any, index) => {
-      itens.push({id: item.id, month: item.month, year: item.year})
+      itens.push({id: item.id, month: item.month, year: item.year, expenseValue: item.expenseValue, revenueValue: item.revenueValue})
     });
 
     console.log('getItens itens', itens);
     setDataState(itens);
   }
 
-  // function removeItens(){
-  //   let plans = Plans.data();
-  //   console.log('getItens plans', plans);
-  //   let itens:any = [];
-  //   plans.map((item: any, index) => {
-  //     Plans.remove(item.id)
-  //   });
-
-    
-  // }
+  
   // useEffect(()=>{
   //   console.log('primeiro effect')
   //   Plans.onLoaded(() => {console.log('onLoaded'); removeItens()});
@@ -77,39 +68,62 @@ const Home: React.FC = () => {
   // }, []);
 
   useEffect(()=>{
-    console.log('primeiro effect')
     Plans.onLoaded(() => {console.log('onLoaded'); getItens()});
     Plans.onChange(() => {console.log('onChange'); getItens()});
   }, []);
 
-  useEffect(()=>{
-    console.log('dataState',dataState)
-  }, [dataState]);
-
-  VasernDB.get('Plans').on
   return (
     <View style={{flex: 1}}>
           <AnimatedRectButton
-          onPress={() => navigation.navigate('NewItem')} 
-          style={[Main.Icon, plusButtonAnimatedStyles]}
+            onPress={() => navigation.navigate('NewItem')} 
+            style={[Main.Icon, plusButtonAnimatedStyles]}
           >
 
-          <Icons
-            color="white"
-            name="plus"
-            size={30}
-            />
-        </AnimatedRectButton>
+            <Icons
+              color="white"
+              name="plus"
+              size={30}
+              />
+          </AnimatedRectButton>
 
           <Header translationY={translationY}/>
               
-          <AnimatedFlatList
-          style={[Main.FlatList]}
-          data={dataState}
-          renderItem={renderedItem}
-          keyExtractor={(item, index) => `item${index}`}
-          onScroll={scrollhandle}
-          />
+          
+
+          {
+            dataState.length == 0 ?
+            <View style={{
+              flex: 1, 
+              alignItems: 'center',
+              justifyContent: 'center',
+              
+              }}>
+                <Text style={Main.CenterText}>
+                  Nenhum plano encontrado
+                </Text>
+                <Text style={Main.CenterText}>
+                  Clique no icone para criar um novo plano
+                </Text>
+                <RectButton 
+                  onPress={() => navigation.navigate('NewItem')} 
+                  style={[Main.Icon,Main.CenterIcon]}
+                >
+                  <Icons
+                    color="white"
+                    name="plus"
+                    size={30}
+                    />
+                </RectButton>
+            </View>
+            :
+            <AnimatedFlatList
+              style={[Main.FlatList]}
+              data={dataState}
+              renderItem={renderedItem}
+              keyExtractor={(item, index) => `item${index}`}
+              onScroll={scrollhandle}
+            />
+          }
  
     </View>
 
@@ -119,7 +133,7 @@ const Home: React.FC = () => {
 }
 
 const Main = StyleSheet.create({
-  FlatList: {padding: 20, zIndex: -1},
+  FlatList: {padding: 20, paddingBottom: 100, zIndex: -1},
   Icon: {
     position:  'absolute',
     backgroundColor: '#292929',
@@ -127,7 +141,15 @@ const Main = StyleSheet.create({
     zIndex: 1,
     alignSelf:'center',
     borderRadius: 100,
-
+  },
+  CenterIcon: { 
+    position: 'relative', 
+    backgroundColor:'#72bf49', 
+    marginTop: 20
+  },
+  CenterText:{
+    color: '#4d4d4d',
+    fontSize: 20,
   }
 })
 

@@ -3,6 +3,8 @@ export class PlanModel {
     props= {
         month: 'string',
         year: 'string',
+        expenseValue: '?string',
+        revenueValue: '?string'
     }
 }
 
