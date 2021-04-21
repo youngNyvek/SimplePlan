@@ -117,6 +117,7 @@ const Card: React.FC<ICard> = ({ month, year, id, expenseTotal, revenueTotal }) 
                             </Text>
                         </View>
                         <View style={{ flex: 1 }}>
+                            
                             <Text style={principalCardStyles.textLabel}>
                                 Despesa
                             </Text>
