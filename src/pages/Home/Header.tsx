@@ -4,44 +4,21 @@ import { View, Text, FlatList, StyleSheet, Pressable, Button } from 'react-nativ
 import Icons from 'react-native-vector-icons/Feather';
 
 
-import Animated, {
-  useAnimatedStyle,
-  interpolate,
-  Extrapolate,
-} from 'react-native-reanimated';
-
-interface IHeaderComponent {
-  translationY: Animated.SharedValue<number>;
-}
-
-const HeaderComponent: React.FC<IHeaderComponent> = ({ translationY }) => {
-  const headerAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      height: interpolate(translationY.value, [50, 150], [80, 30], Extrapolate.CLAMP)
-    }
-  });
-
-  const simplePlanAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: interpolate(translationY.value, [100, 150], [1, 0], Extrapolate.CLAMP)
-    }
-  });
-
+const HeaderComponent: React.FC = () => {
+ 
   return (
    
-      <Animated.View style={[HeaderStyle.View, headerAnimatedStyle]}>
-
-        <Animated.View
-          style={[HeaderStyle.TextView, simplePlanAnimatedStyle]}>
+      <View style={[HeaderStyle.View]}>
+        <View
+          style={[HeaderStyle.TextView]}>
           <Text
             style={HeaderStyle.TextStyle1}
           >$imple</Text>
           <Text
             style={HeaderStyle.TextStyle2}
           >Plan</Text>
-        </Animated.View>
-
-      </Animated.View>
+        </View>
+      </View>
   )
 }
 

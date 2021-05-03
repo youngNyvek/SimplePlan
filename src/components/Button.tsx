@@ -8,8 +8,9 @@ import { RectButtonProperties, RectButton } from 'react-native-gesture-handler';
 interface IAppButton extends RectButtonProperties{
     children: string;
     backgroundColor?: string;
+    color?: string;
 }
-const AppButon: React.FC<IAppButton> = ({children, backgroundColor, ...rest}) => {
+const AppButon: React.FC<IAppButton> = ({children, backgroundColor, color, ...rest}) => {
   return (
         <RectButton 
           {...rest}
@@ -22,7 +23,7 @@ const AppButon: React.FC<IAppButton> = ({children, backgroundColor, ...rest}) =>
                 alignItems: 'center'
           }}
           >
-              <Text style={{color: '#fff', fontSize: 20, fontWeight: 'bold'}}> 
+              <Text style={{color: color ? color : '#fff', fontSize: 20, fontWeight: 'bold'}}> 
                 {children}
               </Text>
         </RectButton>

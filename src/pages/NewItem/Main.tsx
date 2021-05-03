@@ -12,7 +12,7 @@ const NewItem: React.FC = () => {
 
   const [monthIdSelected, setMonthIdSelected] = useState(0);
   const [yearIdSelected, setYearIdSelected] = useState(0);
-  
+
   const months = [
     {
       text: 'Jan',
@@ -64,15 +64,15 @@ const NewItem: React.FC = () => {
     },
   ]
 
-  const years: {text: string, id: number}[] = [];
+  const years: { text: string, id: number }[] = [];
   const currentYear = new Date().getFullYear();
-  for ( let y = currentYear; y <= currentYear+10; y++ ){
-    years.push({text: `${y}`, id: y});
+  for (let y = currentYear; y <= currentYear + 10; y++) {
+    years.push({ text: `${y}`, id: y });
   }
 
   const doIt = () => {
-    const getSelectedMonth = months.filter(month => {return month.id == monthIdSelected});
-    const getSelectedYear = years.filter(year => {return year.id == yearIdSelected});
+    const getSelectedMonth = months.filter(month => { return month.id == monthIdSelected });
+    const getSelectedYear = years.filter(year => { return year.id == yearIdSelected });
 
     Plans.insert({
       month: getSelectedMonth[0].text,
@@ -80,44 +80,45 @@ const NewItem: React.FC = () => {
       revenueValue: 0,
       expenseValue: 0
     });
-    
+
     navigate.goBack();
 
   }
 
   return (
-      <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
 
-        <Text style={NewItemStyles.HeaderText}>NOVO PLANEJAMENTO</Text>
-        <View style={NewItemStyles.CardView}>
+      <Text style={NewItemStyles.HeaderText}>NOVO PLANEJAMENTO</Text>
+      <View style={NewItemStyles.CardView}>
 
-          <View>
-            <Text style={NewItemStyles.TextLabel}>
-              Mês
+        <View>
+          <Text style={NewItemStyles.TextLabel}>
+            Mês
           </Text>
-            <Cards setSelectedID={setMonthIdSelected} cardData={months}/>
-          </View>
+          <Cards setSelectedID={setMonthIdSelected} cardData={months} />
+        </View>
 
-          <View>
-            <Text style={NewItemStyles.TextLabel}>
-              Ano
+        <View>
+          <Text style={NewItemStyles.TextLabel}>
+            Ano
           </Text>
-            <Cards setSelectedID={setYearIdSelected} cardData={years}/>
-          </View>
-
+          <Cards setSelectedID={setYearIdSelected} cardData={years} />
         </View>
 
         <View style={{
           backgroundColor: '#4d4d4d',
-          flex: 1
+          flex: 1,
+          justifyContent: 'center'
         }}>
-        <AppButton onPress={doIt} enabled={monthIdSelected == 0|| yearIdSelected == 0 ? false : true}>
+          <AppButton onPress={doIt} backgroundColor={monthIdSelected == 0 || yearIdSelected == 0 ? '#d0d0d0' : ''} enabled={monthIdSelected == 0 || yearIdSelected == 0 ? false : true}>
             Iniciar novo planejamento
         </AppButton>
-  
+
         </View>
 
       </View>
+
+    </View>
 
   );
 }
@@ -134,9 +135,9 @@ const NewItemStyles = StyleSheet.create({
   CardView: {
     flex: 4,
     backgroundColor: '#4d4d4d',
-    borderTopStartRadius: 100,
+    borderRadius: 50,
   },
-  TextLabel: { fontSize: 35, color: '#fff', fontWeight: '700', marginVertical: 30, textAlign: 'right', marginRight: 20 },
+  TextLabel: { fontSize: 35, color: '#fff', fontWeight: '700', marginVertical: 20, textAlign: 'left', marginLeft: 20 },
 })
 
 export default NewItem;
