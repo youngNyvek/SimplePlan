@@ -28,7 +28,7 @@ const Home: React.FC = () => {
   function getItens() {
     let plans = Plans.data();
     let itens: any = [];
-    plans.map((item: any, index) => {
+    plans.map((item: any) => {
       itens.push({ id: item.id, month: item.month, year: item.year, expenseValue: item.expenseValue, revenueValue: item.revenueValue })
     });
 

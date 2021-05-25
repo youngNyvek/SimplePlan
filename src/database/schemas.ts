@@ -13,7 +13,8 @@ export class ExpensesModel{
     props= {
         name: 'string',
         value: 'int',
-        plan_id: '#Plans'
+        plan: '#Plans',
+        date: 'datetime'
     }
 }
 
@@ -22,6 +23,7 @@ export class RevenueModel{
     props= {
         name: 'string',
         value: 'int',
-        plan_id: '#Plans'
+        plan: '#Plans',
+        date: 'datetime'
     }
 }

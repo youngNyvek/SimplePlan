@@ -16,7 +16,7 @@ interface IDeleteButton {
 }
 
 const DeleteButton: React.FC<IDeleteButton> = ({id,SwipeRef}) => {
-    function handleDeleteItem() {
+    async function handleDeleteItem() {
         Plans.remove(id);
         SwipeRef.current.close()
     }
