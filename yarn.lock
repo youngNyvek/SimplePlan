@@ -5522,6 +5522,11 @@ react-native-codegen@^0.0.6:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+react-native-currency-input@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-currency-input/-/react-native-currency-input-1.0.0.tgz#36036238e839a1503bfb6e184d2805bd9b327519"
+  integrity sha512-w+zpb5RyW/slGnlqH2+W1pGeyBy+OM8ljflXnmPgy0szUL+FLCwxMrh0QM/ErPJnPh9R6qytJnX1aHBbVDYPiA==
+
 react-native-date-picker@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/react-native-date-picker/-/react-native-date-picker-3.3.0.tgz#2fb5dd89c28c589e7105d1ab58d7f150fa73e7c6"

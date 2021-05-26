@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { View } from 'react-native';
 import Card from './Card';
 
@@ -21,22 +21,23 @@ const Cards: React.FC<ICards> = ({setSelectedID, cardData}) => {
   }, [selectedID]);
 
   return (
-    <FlatList
-            showsHorizontalScrollIndicator={false}
-            scrollEventThrottle={50}
-            style={{ height: 100, flexGrow: 0, paddingHorizontal: 10 }}
-            horizontal
-            data={cardData}
-            renderItem={(render) => {
-              return (
-                <Card id={render.item.id} text={render.item.text} selectedID={selectedID} setIsSelectedId={setIsSelectedId}/>
-              )
-            }}
-            keyExtractor={(item, index) => {
-              return `${item.text}${item.id}`
-            }}
-          />
+    <View style={CardStyles.View}>
+      {
+        cardData.map(res => (
+          <Card id={res.id} text={res.text} key={res.id} selectedID={selectedID} setIsSelectedId={setIsSelectedId}/>
+        ))
+      }
+
+    </View>
   )
 }
+
+const CardStyles = StyleSheet.create({
+    View: {
+      flexDirection: 'row',
+      alignItems: 'center', 
+      justifyContent: 'center'
+    }
+})
 
 export default Cards;

@@ -24,39 +24,40 @@ const Card: React.FC<ICard> = ({ id, text, setIsSelectedId, selectedID }) => {
             >
 
                     <View style={[CardStyles.Line, selectedID == id ? { backgroundColor: '#72bf49' } : { backgroundColor: '#4d4d4d' }]} />
-                    <Text style={CardStyles.ItemText}>
-                        {text.toLocaleUpperCase()}
-                    </Text>
+                        <Text style={CardStyles.ItemText}>
+                            {text.toLocaleUpperCase()}
+                        </Text>
                     <View style={[CardStyles.Line, selectedID == id ? { backgroundColor: '#72bf49' }  : { backgroundColor: '#4d4d4d' }]} />
 
 
             </RectButton>
-
         </View>
     )
 }
 
 const CardStyles = StyleSheet.create({
     CardView: {
-            backgroundColor: '#292929',
-            width: 100,
-            height: 100,
-            borderRadius: 15,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginRight: 10,
+        backgroundColor: '#292929',
+        width: 150,
+        height: 60,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 10,
+        padding: 8
     },
     Line: { 
-        width: 60, 
+        width: 100, 
         height: 2, 
-        marginRight: 5 
+        marginRight: 5
     },
     ItemText: {
-        fontSize: 18,
+        fontSize: 20,
         color: '#fff',
         fontWeight: '600',
-        marginVertical: 20,
-        textAlign: 'center'
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        flex:1
     }
 })
 
